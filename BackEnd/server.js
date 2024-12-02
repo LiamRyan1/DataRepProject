@@ -13,3 +13,19 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
+const mongoose = require('mongoose');
+mongoose.connect('mongodb+srv://admin:<db_password>@cluster0.lznv8.mongodb.net/')
+const bookSchema = new mongoose.Schema({
+    title: String,
+    author:String,
+    genre:String,
+    rating:Number,
+    status:String,
+    review:String,
+});
+const Book = mongoose.model('Book',bookSchema);
+
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
