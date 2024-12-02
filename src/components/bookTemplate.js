@@ -21,8 +21,12 @@ const BookItem = (props)=>{
             <Card>
                 <Card.Header>{props.myBook.title}</Card.Header>
                 <Card.Body>
+                    <Card.Subtitle>{props.myBook.author}</Card.Subtitle>
+                    <Card.Subtitle>{props.myBook.genre}</Card.Subtitle>
+                    <Card.Text text = "dark">{props.myBook.rating} </Card.Text>
+                    <Card.Text text = "secondary">{props.myBook.review} </Card.Text>
                     <blockquote className="blockquote mb-0">{/*Styling container for text formating movie year and poster*/}
-                        <footer>{props.myBook.author}</footer>
+                        <footer>{props.myBook.status}</footer>
                     </blockquote>
                 </Card.Body>
                 <Link to={"/edit/" + props.myBook.title } className="btn btn-primary">Edit</Link>
