@@ -8,7 +8,7 @@ function Read() {
         console.log("Reloading Book data...");
         axios.get('http://localhost:4000/api/books')
             .then((response) => {
-                setData(response.data.Books);
+                setData(response.data.books);
             })
             .catch((error) => {
                 console.error("Error reloading data:", error);

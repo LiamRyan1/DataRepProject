@@ -9,7 +9,7 @@ const BookItem = (props)=>{
       }, [props.mybook]); //only run this effect when the mymovie prop changes
       const handleDelete = (e) => {
         e.preventDefault();
-        axios.delete('http://localhost:4000/api/book/' + props.myBook.title)
+        axios.delete('http://localhost:4000/api/book/' + props.myBook.id)
             .then(() => {
                 props.Reload(); //refresh the movie list after deletion
             })
@@ -30,7 +30,7 @@ const BookItem = (props)=>{
                         <footer>{props.myBook.status}</footer>
                     </blockquote>
                 </Card.Body>
-                <Link to={"/edit/" + props.myBook.title } className="btn btn-primary">Edit</Link>
+                <Link to={'/edit/' + props.myBook._id } className="btn btn-primary">Edit</Link>
             </Card>
         </div>
     );

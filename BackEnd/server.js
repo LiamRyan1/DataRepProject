@@ -34,22 +34,32 @@ app.get('/api/books', async (req, res) => {
     const books = await BookModel.find({});
     res.status(200).json({books})
 });
-app.get('/api/books/:title', async (req ,res)=>{
-    const book = await BookModel.findById(req.params.title);
+app.get('/api/books/:id', async (req ,res)=>{
+    const book = await BookModel.findById(req.params.id);
     res.json(book);
 })
-app.put('/api/book/:title', async (req, res)=>{
-    const book = await BookModel.findByIdAndUpdate(req.params.title, req.body, {new:true});
+app.put('/api/book/:id', async (req, res)=>{
+    const book = await BookModel.findByIdAndUpdate(req.params.id, req.body, {new:true});
     res.send(book);
 })
-app.delete('/api/book/:title', async (req, res) => {
+app.delete('/api/book/:id', async (req, res) => {
   
-    console.log('Deleting movie with ID:', req.params.title);
-    const book = await BookModel.findByIdAndDelete(req.params.book);
+    console.log('Deleting movie with ID:', req.params.id);
+    const book = await BookModel.findByIdAndDelete(req.params.id);
     res.status(200).send({ message: "Movie deleted successfully", book });
   
 });
+app.post('/api/books',async (req, res)=>{
+    console.log(req.body.id);
+    const {title, author, genre , rating, status , review } = req.body;
+
+    const newBook = new BookModel({title, author, genre , rating , status , review});
+    await newBook.save();
+
+    res.status(201).json({"message":"Book Added!",Book:newBook});
+})
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
+
