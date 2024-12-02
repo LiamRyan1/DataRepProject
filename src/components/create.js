@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const Create = () => {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
@@ -8,6 +9,8 @@ const Create = () => {
     const [status, setStatus] = useState('');
     const [review, setReview] = useState('');
   
+    const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const book = {title,author,genre,rating,status,review};
@@ -15,6 +18,7 @@ const Create = () => {
 
     axios.post('http://localhost:4000/api/books',book)
     .then((res)=>{console.log(res.data);
+        navigate('/');//redirect
     })
     .catch();
 };
