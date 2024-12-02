@@ -1,10 +1,21 @@
-import { useEffect } from "react";
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 
-//react componentMovieItem takes props as an argument.
+//react component bookItem takes props as an argument.
 const BookItem = (props)=>{
-  
+    useEffect(() => {
+        console.log("Book Item:", props.mybook);
+      }, [props.mybook]); //only run this effect when the mymovie prop changes
+      const handleDelete = (e) => {
+        e.preventDefault();
+        axios.delete('http://localhost:4000/api/book/' + props.myBook.title)
+            .then(() => {
+                props.Reload(); //refresh the movie list after deletion
+            })
+            .catch((error) => {
+                console.error("Error deleting movie:", error);
+            });
+    };
     return(
         <div>
             <Card>
@@ -14,8 +25,7 @@ const BookItem = (props)=>{
                         <footer>{props.myBook.author}</footer>
                     </blockquote>
                 </Card.Body>
-                     
-                <Link to={"/edit/" + props.myBook.title /* */} className="btn btn-primary">Edit</Link>
+                <Link to={"/edit/" + props.myBook.title } className="btn btn-primary">Edit</Link>
             </Card>
         </div>
     );

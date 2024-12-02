@@ -15,7 +15,7 @@ app.use(function(req, res, next) {
 });
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://admin:<db_password>@cluster0.lznv8.mongodb.net/')
+mongoose.connect('mongodb+srv://admin:admin@cluster0.lznv8.mongodb.net/')
 const bookSchema = new mongoose.Schema({
     title: String,
     author:String,
@@ -24,7 +24,12 @@ const bookSchema = new mongoose.Schema({
     status:String,
     review:String,
 });
-const Book = mongoose.model('Book',bookSchema);
+const BookModel = mongoose.model('Book',bookSchema);
+
+app.get('/api/books', async (req, res) => {
+    const books = await BookModel.find({});
+    res.status(200).json({books})
+});
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
