@@ -2,6 +2,7 @@ import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import { useEffect } from "react";
+import { Button } from "react-bootstrap";
 //react component bookItem takes props as an argument.
 const BookItem = (props)=>{
     useEffect(() => {
@@ -9,7 +10,7 @@ const BookItem = (props)=>{
       }, [props.mybook]); //only run this effect when the mymovie prop changes
       const handleDelete = (e) => {
         e.preventDefault();
-        axios.delete('http://localhost:4000/api/book/' + props.myBook.id)
+        axios.delete('http://localhost:4000/api/book/' + props.myBook._id)
             .then(() => {
                 props.Reload(); //refresh the movie list after deletion
             })
@@ -30,6 +31,7 @@ const BookItem = (props)=>{
                         <footer>{props.myBook.status}</footer>
                     </blockquote>
                 </Card.Body>
+                <Button  variant="danger" onClick={handleDelete}>Delete</Button>
                 <Link to={'/edit/' + props.myBook._id } className="btn btn-primary">Edit</Link>
             </Card>
         </div>
