@@ -13,7 +13,7 @@ const Books = (props) => {
     {
         return props.myBooks.map(
             (book)=>{
-                return <BookItem myBook={book} key = {book._id}/>
+                return <BookItem myBook={book} key = {book._id} Reload={props.ReloadData}/>
             }      
         )
     }
