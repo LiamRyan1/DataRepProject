@@ -51,7 +51,7 @@ return (
                         className="form-control"
                         value={title}
                         onChange={(e) => { setTitle(e.target.value) }}
-                    />
+                        required/>
                 </div>
                 <div className="form-group">
                     <label>Add Author name: </label>
@@ -59,31 +59,52 @@ return (
                         className="form-control"
                         value={author}
                         onChange={(e) => { setAuthor(e.target.value) }}
-                    />
+                        required/>
                 </div>
                 <div className="form-group">
                     <label>Add Genre: </label>
-                    <input type="text"
+                    <select
                         className="form-control"
                         value={genre}
                         onChange={(e) => { setGenre(e.target.value) }}
-                    />
+                        required>
+                        <option value="Fiction">Fiction</option>
+                        <option value="Non-Fiction">Non-Fiction</option>
+                        <option value="Science Fiction">Science Fiction</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Biography">Biography</option>
+                        <option value="Mystery">Mystery</option>
+                        <option value="Romance">Romance</option>
+                        <option value="History">History</option>
+                        <option value="Philosophy">Philosophy</option>
+                        <option value="Graphic Novel">Graphic novel</option>
+                    </select>
                 </div>
                 <div className="form-group">
                     <label>Add Rating: </label>
-                    <input type="text"
+                    <select
                         className="form-control"
                         value={rating}
                         onChange={(e) => { setNumber(e.target.value) }}
-                    />
+                        required >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                 </div>
                 <div className="form-group">
                     <label>Add Status: </label>
-                    <input type="text"
+                    <select
                         className="form-control"
                         value={status}
                         onChange={(e) => { setStatus(e.target.value) }}
-                    />
+                        required >
+                        <option value="Not Read">Not Read</option>
+                        <option value="Reading">Reading</option>
+                        <option value="Read">Read</option>
+                    </select>
                 </div>
                 <div className="form-group">
                     <label>Add Review: </label>
@@ -93,7 +114,7 @@ return (
                         onChange={(e) => { setReview(e.target.value) }}
                     />
                 </div>
-            <div className="form-group">
+            <div className="form-group" >
                 <input type="submit" value="Submit Book changes" className="btn btn-primary" />
             </div>
         </form>

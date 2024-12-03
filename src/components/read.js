@@ -21,7 +21,7 @@ function Read() {
 
     return (
         <div>
-            <h2>Your Books</h2>
+            <h2> Your Books</h2>
             <Books myBooks={data} ReloadData={Reload} />
         </div>
     );

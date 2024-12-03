@@ -23,9 +23,33 @@ mongoose.connect('mongodb+srv://admin:admin@cluster0.lznv8.mongodb.net/')
 const bookSchema = new mongoose.Schema({
     title: String,
     author:String,
-    genre:String,
-    rating:Number,
-    status:String,
+    genre:{
+        type: String, 
+    enum: [
+        "Fiction",
+        "Non-Fiction",
+        "Science Fiction",
+        "Fantasy",
+        "Biography",
+        "Mystery",
+        "Romance",
+        "Historical",
+        "Philosophy",
+        "Graphic Novel",
+      ],
+      required: true,
+    },
+    rating:{
+        type: Number,
+        min: 1,
+        max: 5,
+        required: true, 
+    },
+    status: {
+        type: String,
+        enum: ["Not Read", "Reading", "Read"],
+        required: true,
+      },
     review:String,
 });
 const BookModel = mongoose.model('Book',bookSchema);
