@@ -40,11 +40,19 @@ function Read() {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     className="form-control"
+                    style={{ 
+                        width: '50%', 
+                        marginTop: '10px' 
+                    }}
                 />
                 <select
                     value={genre}
                     onChange={(e) => setGenre(e.target.value)}
                     className="form-control"
+                    style={{ 
+                        width: '25%', 
+                        marginTop: '10px' 
+                    }}
                 >
                     <option value="">Select Genre</option>
                     <option value="Fiction">Fiction</option>
@@ -62,6 +70,10 @@ function Read() {
                     value={rating}
                     onChange={(e) => setRating(e.target.value)}
                     className="form-control"
+                    style={{ 
+                        width: '25%', 
+                        marginTop: '10px' 
+                    }}
                 >
                     <option value="">Select Rating</option>
                     <option value="1">1</option>
