@@ -33,7 +33,7 @@ function Read() {
     }, []);
 
     return (
-        <div>
+        <div  style={{backgroundColor:'#b2d6d6' ,minHeight:'100vh'}}>
             <h2> Your Books</h2>
             <div>
                 <input

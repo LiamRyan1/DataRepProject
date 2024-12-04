@@ -45,7 +45,7 @@ const handleSubmit = (event) => {
 }
 //Visual edit page 
 return (
-    <div>
+    <div  style={{backgroundColor:'#b2d6d6' ,minHeight:'100vh'}}>
        <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Add Book Title: </label>
@@ -53,7 +53,11 @@ return (
                         className="form-control"
                         value={title}
                         onChange={(e) => { setTitle(e.target.value) }}
-                        required/>
+                        required
+                        style={{
+                            width: '50%',
+                            marginTop: '10px'
+                        }}/>
                 </div>
                 <div className="form-group">
                     <label>Add Book Cover: </label>
@@ -61,7 +65,11 @@ return (
                         className="form-control"
                         value={cover}
                         onChange={(e) => { setCover(e.target.value) }}
-                        required />
+                        required
+                        style={{
+                            width: '50%',
+                            marginTop: '10px'
+                        }} />
                 </div>
                 <div className="form-group">
                     <label>Add Author name: </label>
@@ -69,7 +77,11 @@ return (
                         className="form-control"
                         value={author}
                         onChange={(e) => { setAuthor(e.target.value) }}
-                        required/>
+                        required
+                        style={{
+                            width: '50%',
+                            marginTop: '10px'
+                        }}/>
                 </div>
                 <div className="form-group">
                     <label>Add Genre: </label>
@@ -77,7 +89,11 @@ return (
                         className="form-control"
                         value={genre}
                         onChange={(e) => { setGenre(e.target.value) }}
-                        required>
+                        required
+                        style={{
+                            width: '50%',
+                            marginTop: '10px'
+                        }}>
                         <option value="Fiction">Fiction</option>
                         <option value="Non-Fiction">Non-Fiction</option>
                         <option value="Science Fiction">Science Fiction</option>
@@ -96,7 +112,11 @@ return (
                         className="form-control"
                         value={rating}
                         onChange={(e) => { setNumber(e.target.value) }}
-                        required >
+                        required 
+                        style={{
+                            width: '50%',
+                            marginTop: '10px'
+                        }}>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -110,19 +130,26 @@ return (
                         className="form-control"
                         value={status}
                         onChange={(e) => { setStatus(e.target.value) }}
-                        required >
+                        required 
+                        style={{
+                            width: '50%',
+                            marginTop: '10px'
+                        }}>
                         <option value="Not Read">Not Read</option>
                         <option value="Reading">Reading</option>
                         <option value="Read">Read</option>
                     </select>
                 </div>
-                <div className="form-group">
+                <div className="form-group" >
                     <label>Add Review: </label>
                     <input type="text"
                         className="form-control"
                         value={review}
                         onChange={(e) => { setReview(e.target.value) }}
-                    />
+                        style={{
+                            width: '50%',
+                            marginTop: '10px'
+                        }}/>
                 </div>
             <div className="form-group" >
                 <input type="submit" value="Submit Book changes" className="btn btn-primary" />

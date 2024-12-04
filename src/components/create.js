@@ -25,7 +25,7 @@ const Create = () => {
             .catch();
     };
     return (
-        <div>
+        <div style={{backgroundColor:'#b2d6d6' ,minHeight:'100vh'}}>
             <h3>Please Enter the new books details</h3>
             <h4>Details may be edited at a later date</h4>
             <form onSubmit={handleSubmit}>
