@@ -25,13 +25,11 @@ const Books = (props) => {
         return <div>
             {ratings.map((rating) => (
                 <div key={rating} style={{marginBottom: '20px' }}>
-                    <h3>Rating: {rating}</h3>
+                    <h3  style={{ display: 'inline', marginRight: '5px' }}  >Rating: {rating}</h3> <img src="/star-7207.svg" alt="Star" style={{ width: '30px', height: '30px', marginBottom:"15px"}}/>
                     <div  style={{
                             display: 'flex',  
                             flexWrap: 'wrap', 
                             gap: '20px',     
-                            justifyContent: 'flex-start',
-                            alignItems: 'flex-start',  
                             marginLeft: '0',  
                         }}>
                         {grouped[rating].map((book) => (

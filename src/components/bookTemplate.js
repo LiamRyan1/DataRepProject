@@ -39,7 +39,7 @@ const BookItem = (props) => {
                         Genre: {props.myBook.genre}
                     </Card.Subtitle>
                     <Card.Text style={{ fontSize: '16px', color: '#333' }}>
-                        <strong>Rating:</strong> {props.myBook.rating}/5
+                        <strong>Rating:</strong> {props.myBook.rating}/5 <img src="/star-7207.svg" alt="Star" style={{ width: '15px', height: '15px', marginBottom:'5px'}}/>
                     </Card.Text>   
                     <Card.Text style={{ fontSize: '15px', color: '#777', fontStyle: 'italic' }}>
                         "{props.myBook.review}"
