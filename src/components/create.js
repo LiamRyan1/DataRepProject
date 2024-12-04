@@ -4,16 +4,17 @@ import { useNavigate } from "react-router-dom";
 const Create = () => {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
-    const [genre, setGenre] = useState('');
-    const [rating, setNumber] = useState('');
-    const [status, setStatus] = useState('');
+    const [cover, setCover] = useState('');
+    const [genre, setGenre] = useState("Fiction");
+    const [rating, setNumber] = useState("1");
+    const [status, setStatus] = useState("Not Read");
     const [review, setReview] = useState('');
 
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const book = { title, author, genre, rating, status, review };
+        const book = { title,cover, author, genre, rating, status, review };
         //console.log(book);
 
         axios.post('http://localhost:4000/api/books', book)
@@ -34,6 +35,14 @@ const Create = () => {
                         className="form-control"
                         value={title}
                         onChange={(e) => { setTitle(e.target.value) }}
+                        required />
+                </div>
+                <div className="form-group">
+                    <label>Add Book Cover: </label>
+                    <input type="text"
+                        className="form-control"
+                        value={cover}
+                        onChange={(e) => { setCover(e.target.value) }}
                         required />
                 </div>
                 <div className="form-group">

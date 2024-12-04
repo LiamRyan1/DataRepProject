@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 export default function Edit(props) {
   let { id } = useParams();//extract id 
   //STATE TO  STORE MOVIE INFO
-  const [title, setTitle] = useState('');
+    const [title, setTitle] = useState('');
+    const [cover, setCover] = useState('');
     const [author, setAuthor] = useState('');
     const [genre, setGenre] = useState('');
     const [rating, setNumber] = useState('');
@@ -21,6 +22,7 @@ useEffect(() => {
     axios.get('http://localhost:4000/api/books/' + id)
         .then((response) => {
             setTitle(response.data.title);
+            setCover(response.data.cover)
             setAuthor(response.data.author);
             setGenre(response.data.genre);
             setNumber(response.data.rating);
@@ -34,7 +36,7 @@ useEffect(() => {
 //submit updated info for object movie
 const handleSubmit = (event) => {
     event.preventDefault();
-    const editedBook = {title,author,genre,rating,status,review};//new updated object
+    const editedBook = {title,cover,author,genre,rating,status,review};//new updated object
     axios.put('http://localhost:4000/api/book/' + id, editedBook)//request to update db
         .then((res) => {
             console.log(res.data);
@@ -52,6 +54,14 @@ return (
                         value={title}
                         onChange={(e) => { setTitle(e.target.value) }}
                         required/>
+                </div>
+                <div className="form-group">
+                    <label>Add Book Cover: </label>
+                    <input type="text"
+                        className="form-control"
+                        value={cover}
+                        onChange={(e) => { setCover(e.target.value) }}
+                        required />
                 </div>
                 <div className="form-group">
                     <label>Add Author name: </label>

@@ -22,6 +22,7 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://admin:admin@cluster0.lznv8.mongodb.net/')
 const bookSchema = new mongoose.Schema({
     title: String,
+    cover:String,
     author: String,
     genre: {
         type: String,
@@ -88,9 +89,9 @@ app.delete('/api/book/:id', async (req, res) => {
 });
 app.post('/api/books', async (req, res) => {
     console.log(req.body.id);
-    const { title, author, genre, rating, status, review } = req.body;
+    const { title,cover, author, genre, rating, status, review } = req.body;
 
-    const newBook = new BookModel({ title, author, genre, rating, status, review });
+    const newBook = new BookModel({ title,cover, author, genre, rating, status, review });
     await newBook.save();
 
     res.status(201).json({ "message": "Book Added!", Book: newBook });

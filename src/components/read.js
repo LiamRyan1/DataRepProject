@@ -6,18 +6,20 @@ function Read() {
     const [title, setTitle] = useState('');
     const [genre, setGenre] = useState('');
     const [rating, setRating] = useState('');
+    
     const Reload = () => {
         console.log("Reloading Book data...");
         let queryParams = '';
         //check if  varaibles have a value
-        if (title) queryParams += "title="+title+"&";
-        if (genre) queryParams += "genre=" + genre +"&";
-        if (rating) queryParams += "rating="+ rating+"&";
+        if (title) queryParams += "title=" + title + "&";
+        if (genre) queryParams += "genre=" + genre + "&";
+        if (rating) queryParams += "rating=" + rating + "&";
 
         if (queryParams.endsWith('&')) {
             queryParams = queryParams.slice(0, -1);
+
         }
-        axios.get("http://localhost:4000/api/books?"+ queryParams)
+        axios.get("http://localhost:4000/api/books?" + queryParams)
             .then((response) => {
                 setData(response.data.books);
             })
@@ -40,18 +42,18 @@ function Read() {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     className="form-control"
-                    style={{ 
-                        width: '50%', 
-                        marginTop: '10px' 
+                    style={{
+                        width: '50%',
+                        marginTop: '10px'
                     }}
                 />
                 <select
                     value={genre}
                     onChange={(e) => setGenre(e.target.value)}
                     className="form-control"
-                    style={{ 
-                        width: '25%', 
-                        marginTop: '10px' 
+                    style={{
+                        width: '25%',
+                        marginTop: '10px'
                     }}
                 >
                     <option value="">Select Genre</option>
@@ -70,9 +72,9 @@ function Read() {
                     value={rating}
                     onChange={(e) => setRating(e.target.value)}
                     className="form-control"
-                    style={{ 
-                        width: '25%', 
-                        marginTop: '10px' 
+                    style={{
+                        width: '25%',
+                        marginTop: '10px'
                     }}
                 >
                     <option value="">Select Rating</option>
