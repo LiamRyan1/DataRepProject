@@ -7,7 +7,7 @@ const Statistics= () => {
     const [averageRating,setAverageRating] = useState(0);
     const [totalUnRead,setTotalUnread] = useState(0);
 
-    useEffect = (() => {
+    useEffect (() => {
     axios.get("http://localhost:4000/api/books")
     .then((response) => {
         setData(response.data.books);
@@ -17,16 +17,20 @@ const Statistics= () => {
     });
     }, []);
 
-    setTotalBooks = data.length;
+     let total= data.length;
+     setTotalBooks(total);
     const ReadBooks  =  data.filter(data => data.status !== "Read").length;
-    setTotalUnread = totalBooks -ReadBooks;
-    setPercentRead = ((ReadBooks/totalBooks)*100);
+    let Unread = totalBooks -ReadBooks;
+    setTotalUnread(Unread);
+    let Percent= ((ReadBooks/totalBooks)*100);
+    setPercentRead(Percent);
     const totalRating = 0;
     for(let i = 0 ; i < data.length; i++)
     {
         totalRating += parseFloat(data[i].rating);
     }
-    setAverageRating = (totalRating/totalBooks);
+    let AvgRating = (totalRating/totalBooks);
+    setAverageRating(AvgRating);
 
     return (
         <div style={{ backgroundColor: '#b2d6d6', minHeight: '100vh' }}>
