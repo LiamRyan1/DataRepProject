@@ -14,16 +14,18 @@ const Statistics = () => {
                 const data = response.data.books;
                 let total = data.length;
                 setTotalBooks(total);
-                const ReadBooks = data.filter(data => data.status !== "Read").length;
-                let Unread = totalBooks - ReadBooks;
+                const readBooks = data.filter(data => data.status === "Read").length;
+
+                let Unread = total - readBooks;
+
                 setTotalUnread(Unread);
-                let Percent = ((ReadBooks / totalBooks) * 100);
+                let Percent = ((readBooks / total) * 100);
                 setPercentRead(Percent);
-                const totalRating = 0;
+                let totalRating = 0;
                 for (let i = 0; i < data.length; i++) {
                     totalRating += parseFloat(data[i].rating);
                 }
-                let AvgRating = (totalRating / totalBooks);
+                let AvgRating = (totalRating / total);
                 setAverageRating(AvgRating);
 
             })
@@ -37,7 +39,7 @@ const Statistics = () => {
         <div style={{ backgroundColor: '#b2d6d6', minHeight: '100vh' }}>
             <h1>Statistics</h1>
             <div>
-                <p><strong>Total Books:{totalBooks}<br />Percentage of Books Read:{percentRead} <br />Average Rating:{averageRating}<br />Total Unread Books:{totalUnRead}<br /></strong></p>
+                <p><strong>Total Books:{totalBooks}<br />Percentage of Books Read:{percentRead}% <br />Average Rating:{averageRating}<br />Total Unread Books:{totalUnRead}<br /></strong></p>
             </div>
         </div>
     );
