@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 const Statistics = () => {
-    const [data, setData] = useState([]);
+    //const [data, setData] = useState([]);
     const [totalBooks, setTotalBooks] = useState(0);
     const [percentRead, setPercentRead] = useState(0);
     const [averageRating, setAverageRating] = useState(0);
@@ -10,7 +10,8 @@ const Statistics = () => {
     useEffect(() => {
         axios.get("http://localhost:4000/api/books")
             .then((response) => {
-                setData(response.data.books);
+                //setData(response.data.books);
+                const data = response.data.books;
                 let total = data.length;
                 setTotalBooks(total);
                 const ReadBooks = data.filter(data => data.status !== "Read").length;
