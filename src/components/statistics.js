@@ -8,19 +8,22 @@ const Statistics = () => {
     const [totalUnRead, setTotalUnread] = useState(0);
 
     useEffect(() => {
-        axios.get("http://localhost:4000/api/books")
+        axios.get("http://localhost:4000/api/books")//fetch books from server
             .then((response) => {
                 //setData(response.data.books);
                 const data = response.data.books;
+                //calc total books
                 let total = data.length;
                 setTotalBooks(total);
+
+                //calculate the total number of unread books
                 const readBooks = data.filter(data => data.status === "Read").length;
-
                 let Unread = total - readBooks;
-
                 setTotalUnread(Unread);
+                //calculate the percent of read books
                 let Percent = ((readBooks / total) * 100);
                 setPercentRead(Percent);
+                //average rating of all books
                 let totalRating = 0;
                 for (let i = 0; i < data.length; i++) {
                     totalRating += parseFloat(data[i].rating);

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+//Create componet to allow user to add new books
 const Create = () => {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
@@ -11,13 +12,13 @@ const Create = () => {
     const [review, setReview] = useState('');
 
     const navigate = useNavigate();
-
+    //add new book to the server on submit
     const handleSubmit = (e) => {
         e.preventDefault();
         const book = { title,cover, author, genre, rating, status, review };
-        //console.log(book);
+        console.log(book);
 
-        axios.post('http://localhost:4000/api/books', book)
+        axios.post('http://localhost:4000/api/books', book)//api post request to add new book
             .then((res) => {
                 console.log(res.data);
                 navigate('/');//redirect
@@ -30,6 +31,7 @@ const Create = () => {
             <h4>Details may be edited at a later date</h4>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
+                      {/*Capture title*/}
                     <label>Add Book Title: </label>
                     <input type="text"
                         className="form-control"
@@ -37,6 +39,7 @@ const Create = () => {
                         onChange={(e) => { setTitle(e.target.value) }}
                         required />
                 </div>
+                 {/*Capture Cover address*/}
                 <div className="form-group">
                     <label>Add Book Cover: </label>
                     <input type="text"
@@ -46,6 +49,7 @@ const Create = () => {
                         required />
                 </div>
                 <div className="form-group">
+                      {/*Capture author name*/}
                     <label>Add Author name: </label>
                     <input type="text"
                         className="form-control"
@@ -54,12 +58,14 @@ const Create = () => {
                         required />
                 </div>
                 <div className="form-group">
+                      {/*Capture Genre*/}
                     <label>Add Genre: </label>
                     <select
                         className="form-control"
                         value={genre}
                         onChange={(e) => { setGenre(e.target.value) }}
                         required>
+                        {/*potential genres*/}
                         <option value="Fiction">Fiction</option>
                         <option value="Non-Fiction">Non-Fiction</option>
                         <option value="Science Fiction">Science Fiction</option>
@@ -73,6 +79,7 @@ const Create = () => {
                     </select>
                 </div>
                 <div className="form-group">
+                     {/*Capture Rating*/}
                     <label>Add Rating: </label>
                     <select
                         className="form-control"
@@ -87,6 +94,7 @@ const Create = () => {
                     </select>
                 </div>
                 <div className="form-group">
+                      {/*Capture Status*/}
                     <label>Add Status: </label>
                     <select
                         className="form-control"
@@ -99,6 +107,7 @@ const Create = () => {
                     </select>
                 </div>
                 <div className="form-group">
+                      {/*Capture Reviw*/}
                     <label>Add Review: </label>
                     <input type="text"
                         className="form-control"
@@ -106,7 +115,7 @@ const Create = () => {
                         onChange={(e) => { setReview(e.target.value) }}
                     />
                 </div>
-                <div>
+                <div>{/*submit button*/}
                     <input type="submit" value="Add Book"></input>
                 </div>
             </form>

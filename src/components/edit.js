@@ -6,8 +6,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 export default function Edit(props) {
-  let { id } = useParams();//extract id 
-  //STATE TO  STORE MOVIE INFO
+  let { id } = useParams();//extract id from url
     const [title, setTitle] = useState('');
     const [cover, setCover] = useState('');
     const [author, setAuthor] = useState('');
@@ -17,8 +16,8 @@ export default function Edit(props) {
     const [review, setReview] = useState('');
   
   const navigate = useNavigate();
-//fetch movie data when id is specified
 useEffect(() => {
+    //fetch data from the server  using book id and set state with returned details
     axios.get('http://localhost:4000/api/books/' + id)
         .then((response) => {
             setTitle(response.data.title);
@@ -33,17 +32,17 @@ useEffect(() => {
             console.log(error);
         });
 }, [id]);
-//submit updated info for object movie
+//submit updated info for object book
 const handleSubmit = (event) => {
     event.preventDefault();
-    const editedBook = {title,cover,author,genre,rating,status,review};//new updated object
-    axios.put('http://localhost:4000/api/book/' + id, editedBook)//request to update db
+    const editedBook = {title,cover,author,genre,rating,status,review};//new updated book object
+    axios.put('http://localhost:4000/api/book/' + id, editedBook)//request to update db with the new info
         .then((res) => {
             console.log(res.data);
             navigate('/');//redirect
         });
 }
-//Visual edit page 
+//visual edit page 
 return (
     <div  style={{backgroundColor:'#b2d6d6' ,minHeight:'100vh'}}>
        <form onSubmit={handleSubmit}>

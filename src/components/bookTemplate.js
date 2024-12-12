@@ -6,18 +6,19 @@ import { Button } from "react-bootstrap";
 //react component bookItem takes props as an argument.
 const BookItem = (props) => {
     useEffect(() => {
-        console.log("Book Item:", props.mybook);
-    }, [props.mybook]); //only run this effect when the mymovie prop changes
+        console.log("Book Item:", props.myBook);
+    }, [props.mybook]); //log details when myBook changes
     const handleDelete = (e) => {
         e.preventDefault();
-        axios.delete('http://localhost:4000/api/book/' + props.myBook._id)
+        axios.delete('http://localhost:4000/api/book/' + props.myBook._id)//delete request made to api
             .then(() => {
-                props.Reload(); //refresh the movie list after deletion
+                props.Reload(); //refresh the book list after deletion
             })
             .catch((error) => {
                 console.error("Error deleting movie:", error);
             });
     };
+    //render book details in a bootstrap card
     return (
         <div style={{ maxWidth: '400px',height:'550px' ,margin: '10px', marginBottom: '20px', boxShadow: '0 4px 8px ', borderRadius: '8px', overflow: 'auto' }}>
             <Card style={{ border: 'none' }}>
@@ -60,6 +61,7 @@ const BookItem = (props) => {
                 </Card.Body>
                 <div style={{ display: 'flex', gap: '16px', marginTop: '16px', alignItems: 'center', margin: "8px", }} >
                     <Button variant="danger" size="sm" onClick={handleDelete}>Delete</Button>
+                    {/* send to edit page*/}
                     <Link to={'/edit/' + props.myBook._id} className="btn btn-primary" style={{ margin: "8px", height: '32px', padding: '4px 8px', display: 'flex', alignItems: 'center' }}>Edit</Link>
                 </div>
             </Card>

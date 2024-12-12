@@ -2,23 +2,27 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Books from "./BookRender";
 function Read() {
+    //state variables to store the book data and filter criteria
     const [data, setData] = useState([]);
     const [title, setTitle] = useState('');
     const [genre, setGenre] = useState('');
     const [rating, setRating] = useState('');
     
+    
     const Reload = () => {
         console.log("Reloading Book data...");
+        //construct string based on filters 
         let queryParams = '';
-        //check if  varaibles have a value
         if (title) queryParams += "title=" + title + "&";
         if (genre) queryParams += "genre=" + genre + "&";
         if (rating) queryParams += "rating=" + rating + "&";
-
+        
+        //remove trailing &
         if (queryParams.endsWith('&')) {
             queryParams = queryParams.slice(0, -1);
 
         }
+        //fetch filtered books
         axios.get("http://localhost:4000/api/books?" + queryParams)
             .then((response) => {
                 setData(response.data.books);
@@ -27,7 +31,7 @@ function Read() {
                 console.error("Error reloading data:", error);
             });
     };
-
+    //Fetch data when the initialy renders
     useEffect(() => {
         Reload();
     }, []);
@@ -84,10 +88,12 @@ function Read() {
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
+                {/*trigger the data fetch based on filters */}
                 <button onClick={Reload} className="btn btn-primary" style={{ marginTop: '10px' }}>
                     Apply Filters
                 </button>
             </div>
+            {/*render the list of books based on the filtered data */}
             <Books myBooks={data} ReloadData={Reload} />
         </div>
     );
